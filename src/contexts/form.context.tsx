@@ -94,24 +94,24 @@ export const FormContextProvider: React.FC = ({ children }) => {
     }
   };
 
-  const navegarProximaPergunta = () => {
-    const proxPergunta = obterProximaPergunta();
-
-    if (proxPergunta?.tipoPergunta === TipoPerguntaEnum.ABERTA) {
+  function navegarParaPergunta(pergunta?: PerguntaModel) {
+    if (pergunta?.tipoPergunta === TipoPerguntaEnum.ABERTA) {
       navigation.navigate("Form", { screen: "FormPerguntaAberta" });
     } else {
       navigation.navigate("Form", { screen: "FormPerguntaSimNao" });
     }
+  }
+
+  const navegarProximaPergunta = () => {
+    const proxPergunta = obterProximaPergunta();
+
+    navegarParaPergunta(proxPergunta);
   };
 
   const navegarPerguntaAnterior = () => {
     const perguntaAnt = obterPerguntaAnterior();
 
-    if (perguntaAnt?.tipoPergunta === TipoPerguntaEnum.ABERTA) {
-      navigation.navigate("Form", { screen: "FormPerguntaAberta" });
-    } else {
-      navigation.navigate("Form", { screen: "FormPerguntaSimNao" });
-    }
+    navegarParaPergunta(perguntaAnt);
   };
 
   const state = {
