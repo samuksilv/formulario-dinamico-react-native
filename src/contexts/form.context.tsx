@@ -94,13 +94,13 @@ export const FormContextProvider: React.FC = ({ children }) => {
     }
   };
 
-  function navegarParaPergunta(pergunta?: PerguntaModel) {
+  const navegarParaPergunta = (pergunta?: PerguntaModel) => {
     if (pergunta?.tipoPergunta === TipoPerguntaEnum.ABERTA) {
       navigation.navigate("Form", { screen: "FormPerguntaAberta" });
     } else {
       navigation.navigate("Form", { screen: "FormPerguntaSimNao" });
     }
-  }
+  };
 
   const navegarProximaPergunta = () => {
     const proxPergunta = obterProximaPergunta();
